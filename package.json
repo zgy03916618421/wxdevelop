@@ -1,0 +1,26 @@
+{
+  "name": "wxdevelop",
+  "version": "0.0.1",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zgy03916618421/wxdevelop.git"
+  },
+  "keywords": [
+    "wx"
+  ],
+  "author": "zhougy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zgy03916618421/wxdevelop/issues"
+  },
+  "homepage": "https://github.com/zgy03916618421/wxdevelop#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  }
+}
