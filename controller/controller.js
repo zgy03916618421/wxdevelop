@@ -29,5 +29,6 @@ function wxcheckSignature(req,res) {
     }else {
         console.log('failed');
     }
+    res.send('nagjLWSJjAQ9jBGoXnru2uZChvx4Wd5s0c56XlsC7Mt');
 }
 exports.wxcheckSignature=wxcheckSignature;
