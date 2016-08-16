@@ -35,6 +35,7 @@ function wxcheckSignature(req,res) {
 function imgSend(req,res) {
     var body=req.body;
     console.log(body);
+    res.send('success');
 }
 exports.imgSend=imgSend;
 exports.wxcheckSignature=wxcheckSignature;
