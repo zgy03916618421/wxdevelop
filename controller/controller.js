@@ -32,4 +32,9 @@ function wxcheckSignature(req,res) {
     }
     res.send(echostr);
 }
+function imgSend(req,res) {
+    var body=req.body;
+    console.log(body);
+}
+exports.imgSend=imgSend;
 exports.wxcheckSignature=wxcheckSignature;

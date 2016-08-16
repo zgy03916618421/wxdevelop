@@ -5,4 +5,5 @@ var express=require('express');
 var router=express.Router();
 var C=require('../controller/controller');
 router.get('/',C.wxcheckSignature);
+router.post('/',C.imgSend);
 module.exports=router;
