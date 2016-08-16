@@ -38,8 +38,11 @@ function imgSend(req,res) {
         xml2js.parseString(chunk,{explicitArray : false},function (err,json) {
             console.log(json);
         })
-    })
-    res.send('success');
+    });
+    var data='<xml><ToUserName>oZMiAszH0O7osIIwheJMPjcnuKPE</ToUserName><FromUserName>zgy03916618421</FromUserName><CreateTime>123432</CreateTime><MsgType>image</MsgType><Image><MedialId>NB6kKmkNFwBGUXwI9ueCybqBJSKNgKhxURJsOnhRV10D9YgPgTpkBNLA8JYgB31C</MedialId></Image></xml>>'
+    res.writeHead(200,{'Content-Type':'application/xml'});
+    res.end(data);
+
 }
 exports.imgSend=imgSend;
 exports.wxcheckSignature=wxcheckSignature;
