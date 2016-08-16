@@ -17,6 +17,7 @@ function wxcheckSignature(req,res) {
     var signature=req.query.signature;
     var timestamp=req.query.timestamp;
     var nonce=req.query.nonce;
+    var echostr=req.query.echostr;
     var token='zgy';
     var tempArr=[token,timestamp,nonce];
     tempArr.sort();
@@ -29,6 +30,6 @@ function wxcheckSignature(req,res) {
     }else {
         console.log('failed');
     }
-    res.send('nagjLWSJjAQ9jBGoXnru2uZChvx4Wd5s0c56XlsC7Mt');
+    res.send(echostr);
 }
 exports.wxcheckSignature=wxcheckSignature;
