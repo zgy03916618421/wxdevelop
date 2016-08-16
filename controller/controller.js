@@ -39,7 +39,7 @@ function imgSend(req,res) {
             console.log(json);
         })
     });
-    var data='<xml><ToUserName>oZMiAszH0O7osIIwheJMPjcnuKPE</ToUserName><FromUserName>zgy03916618421</FromUserName><CreateTime>123432</CreateTime><MsgType>image</MsgType><Image><MedialId>NB6kKmkNFwBGUXwI9ueCybqBJSKNgKhxURJsOnhRV10D9YgPgTpkBNLA8JYgB31C</MedialId></Image></xml>>'
+    var data='<xml><ToUserName>owingv6lhK70vcv6Nklm_6_fDm-s</ToUserName><FromUserName>zgy03916618421</FromUserName><CreateTime>123432</CreateTime><MsgType>image</MsgType><Image><MedialId>NB6kKmkNFwBGUXwI9ueCybqBJSKNgKhxURJsOnhRV10D9YgPgTpkBNLA8JYgB31C</MedialId></Image></xml>>'
     res.writeHead(200,{'Content-Type':'application/xml'});
     res.end(data);
 
