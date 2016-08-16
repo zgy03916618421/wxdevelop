@@ -3,6 +3,7 @@
  */
 var bodyParser=require('body-parser');
 var cryPto=require('crypto');
+var xml2js=require('xml2js');
 //var express=require('express');
 //var app=express();
 //app.use(bodyParser.urlencoded({extended:false}));
@@ -33,8 +34,11 @@ function wxcheckSignature(req,res) {
     res.send(echostr);
 }
 function imgSend(req,res) {
-    var body=req.body;
-    console.log(body);
+    req.on('data',function (chunk) {
+        xml2js.parseString(chunk,{explicitArray : false},function (err,json) {
+            console.log(json);
+        })
+    })
     res.send('success');
 }
 exports.imgSend=imgSend;
