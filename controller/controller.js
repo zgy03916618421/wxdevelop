@@ -39,26 +39,63 @@ function wxcheckSignature(req,res) {
 }
 function imgSend(req,res) {
     co(function *() {
-        var token = yield redisTemplate.get('access_token');
+        console.log('join in');
+        var token = yield redisTemplate.get('access_token_wechat');
+        console.log(token);
         if (token == null){
-            var res = yield httpUtils.get('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx9a66afce31e4ec8b&secret=c2b679dbd1ea6c0ffc99155123a25697');
-            res = JSON.parse(res.text);
-            token = res.access_token;
-            console.log(token);
-            yield redisTemplate.set('access_token',token);
+            var opts = { method: 'GET',
+                url: 'https://api.weixin.qq.com/cgi-bin/token',
+                qs:
+                { grant_type: 'client_credential',
+                    appid: 'wx9a66afce31e4ec8b',
+                    secret: 'c2b679dbd1ea6c0ffc99155123a25697' },
+                };
+            var result = yield httpUtils.get(opts);
+            result = JSON.parse(result);
+            console.log(result);
+            token = result.access_token;
+            yield redisTemplate.set('access_token_wechat',token);
+            yield redisTemplate.expire("access_token_wechat",7200);
         }
-        req.on('data',function (chunk) {
+        console.log(token);
+        var xml = yield accquireXML(req);
+        console.log(xml);
+        var xmljs = yield xml2json(xml);
+        console.log(xmljs);
+        var openid = xmljs.FromUserName;
+        var userinfo = yield httpUtils.get('https://api.weixin.qq.com/cgi-bin/user/info?access_token=' + token+ '&openid='+openid);
+        var username = userinfo.nickname;
+
+        /*xml2js.parseString(xml,{explicitArray : false},function (err,json) {
+            console.log(json);
+            user_openid = json.FromUserName;
+            Content = json.Content;
+        })*/
+       /* req.on('data',function (chunk) {
             xml2js.parseString(chunk,{explicitArray : false},function (err,json) {
                 console.log(json);
                 user_openid = json.FromUserName;
-                content = json.Content;
-
+                Content = json.Content;
             })
-        });
+        });*/
         res.end('success');
     }
     )
-
+}
+function xml2json(xml) {
+    return new Promise(function (resolve,reject) {
+        xml2js.parseString(xml,{explicitArray : false},function (err,json) {
+            if(err) reject(err);
+            else resolve(json);
+        })
+    })
+}
+function accquireXML(req,err) {
+    return new Promise(function (resolve,reject) {
+        req.on('data',function (chunk) {
+            resolve(chunk);
+        })
+    })
 }
 exports.imgSend=imgSend;
 exports.wxcheckSignature=wxcheckSignature;
