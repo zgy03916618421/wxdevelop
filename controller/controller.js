@@ -41,7 +41,7 @@ function imgSend(req,res) {
             console.log(json);
         })
     });
-    res.end('success!');
+    res.end('success');
 }
 exports.imgSend=imgSend;
 exports.wxcheckSignature=wxcheckSignature;
