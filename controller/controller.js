@@ -4,6 +4,8 @@
 var bodyParser=require('body-parser');
 var cryPto=require('crypto');
 var xml2js=require('xml2js');
+var co = require('co');
+var request = require('request');;
 //var express=require('express');
 //var app=express();
 //app.use(bodyParser.urlencoded({extended:false}));
@@ -39,9 +41,6 @@ function imgSend(req,res) {
             console.log(json);
         })
     });
-    var data='<xml><ToUserName>ovWAzwXniAn6sMpn3vGoXhjD8sEE</ToUserName><FromUserName>zgy03916618421</FromUserName><CreateTime>123432</CreateTime><MsgType>image</MsgType><Image><MedialId>NB6kKmkNFwBGUXwI9ueCybqBJSKNgKhxURJsOnhRV10D9YgPgTpkBNLA8JYgB31C</MedialId></Image></xml>>'
-    res.writeHead(200,{'Content-Type':'application/xml'});
-    res.end(data);
 
 }
 exports.imgSend=imgSend;
