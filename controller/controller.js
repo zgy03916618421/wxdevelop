@@ -62,7 +62,7 @@ function imgSend(req,res) {
         console.log(xml);
         var xmljs = yield xml2json(xml);
         console.log(xmljs);
-        var openid = xmljs.FromUserName;
+        var openid = xmljs.xml.FromUserName;
         var userinfo = yield httpUtils.get('https://api.weixin.qq.com/cgi-bin/user/info?access_token=' + token+ '&openid='+openid);
         var username = userinfo.nickname;
 
