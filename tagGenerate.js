@@ -196,7 +196,7 @@ var posObj = [
         }
     ]
 ]
-exports.imgMake = function (data,username) {
+exports.imgMake = function (data,username,imgStream) {
     return new Promise(function (resolve,reject) {
         var Image = Canvas.Image;
         var maskImg = new Image();
@@ -239,14 +239,12 @@ exports.imgMake = function (data,username) {
             })
             var url = data[2];
             console.log(url);
-            hlTitleImg.src = path.join(__dirname,'temp.png');
-            hlTitleImg.onload = function () {
+            hlTitleImg.src = imgStream;
                 context.drawImage(hlTitleImg,100,318);
                 var stream = canvas.createPNGStream();
                 var out = fs.createWriteStream(path.join(__dirname, 'test.png'));
                 stream.pipe(out);
                 resolve(stream);
-            }
             
 
             /*http.get(url, function (res) {

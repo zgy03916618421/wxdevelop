@@ -5,6 +5,7 @@ var bodyParser=require('body-parser');
 var cryPto=require('crypto');
 var xml2js=require('xml2js');
 var co = require('co');
+var  Canvas = require('canvas');
 var request = require('request');
 var redisTemplate = require('../redisTemplate');
 var httpUtils = require('../HttpUtils');
@@ -90,15 +91,21 @@ function imgSend(req,res) {
             method : 'GET',
             url : data[2]
         }
-        request.get(data[2]).pipe(fs.createWriteStream('temp.png'))
+        var imgStream = yield httpUtils.get(opts);
+        var stream = yield makeImg.imgMake(data,username,imgStream)
+        //request.get(data[2]).pipe(fs.createWriteStream('temp.png'))
+        //yield makeImg.imgMake(data,username,buf);;
         
-        //yield makeImg.imgMake(data,username,buf);
-        var stream = yield makeImg.imgMake(data,username);
-       // fs.writeFileSync('test.jpg',stream);
-        //console.log(stream);
         res.end('success');
     }
     )
+}
+function imgLoad(img) {
+    return new Promise(function (resolve,reject) {
+        img.onload(function () {
+            
+        })
+    })
 }
 function xml2json(xml) {
     return new Promise(function (resolve,reject) {
