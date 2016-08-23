@@ -242,8 +242,8 @@ exports.imgMake = function (data,username,imgStream) {
             //context.drawImage(hlTitleImg,100,318);
             console.log('hers?');
             var stream = canvas.createPNGStream();
-            //var out = fs.createWriteStream(path.join(__dirname, 'test.png'));
-           // stream.pipe(out);
+            var out = fs.createWriteStream(path.join(__dirname, 'test.png'));
+            stream.pipe(out);
            return stream;
             /*http.get(url, function (res) {
                 var buf = '';
