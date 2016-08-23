@@ -63,10 +63,10 @@ function imgSend(req,res) {
         console.log(xml);
         var xmljs = yield xml2json(xml);
         console.log(xmljs);
-        var openid = xmljs.xml.FromUserName;
+       // var openid = xmljs.xml.FromUserName;
         var content = xmljs.Content;
-        console.log(openid);
-        var url = 'https://api.weixin.qq.com/cgi-bin/user/info';
+        //console.log(openid);
+        //var url = 'https://api.weixin.qq.com/cgi-bin/user/info';
         opts = {
             method : 'GET',
             url : url,
@@ -76,18 +76,21 @@ function imgSend(req,res) {
                 openid : openid
             }
         };
-        var userinfo = yield httpUtils.get(opts);
-        console.log(userinfo);
-        userinfo=JSON.parse(userinfo);
-        var username = userinfo.nickname;
+        //var userinfo = yield httpUtils.get(opts);
+        //console.log(userinfo);
+        //userinfo=JSON.parse(userinfo);
+        //var username = userinfo.nickname;
+        var username = 'zhougy';
         url = 'https://dev-goat.beautifulreading.com/goat/bookdetail/'+content+'/57a7fecce779893b48000002'
         opts = {
             method : 'GET',
             url : url
         }
-        var data = yield httpUtils.get(opts);
+        var strData = yield httpUtils.get(opts);
+        var data = strData.data;
         console.log(data);
         var stream=yield makeImg.imgMake(data,username);
+        console.log(stream);
         res.end('success');
     }
     )
