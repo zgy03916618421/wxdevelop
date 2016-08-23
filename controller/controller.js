@@ -91,11 +91,19 @@ function imgSend(req,res) {
             url : url
         }
         var strData = yield httpUtils.get(opts);
-        console.log(strData);
         var rdata = JSON.parse(strData);
         var data = rdata.data;
         console.log(data);
-        var stream=yield makeImg.imgMake(data,username);
+        //console.log(data[2]);
+        opts ={
+            method : 'GET',
+            url : data[2]
+        }
+
+        var buf = yield httpUtils.get(opts);
+        console.log(buf);
+        yield makeImg.imgMake(data,username,buf);
+        //var stream=yield makeImg.imgMake(data,username);
        // fs.writeFileSync('test.jpg',stream);
         //console.log(stream);
         res.end('success');
