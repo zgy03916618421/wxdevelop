@@ -91,10 +91,12 @@ function imgSend(req,res) {
             method : 'GET',
             url : data[2]
         }
-        var imgStream = yield httpUtils.get(opts);
-        console.log(imgStream);
-        var stream = makeImg.imgMake(data,username,imgStream);
-        //request.get(data[2]).pipe(fs.createWriteStream('temp.png'))
+      //  var imgStream = yield httpUtils.get(opts);
+       // console.log(imgStream);
+        yield request.get(data[2]).pipe(fs.createWriteStream('temp.png'))
+        console.log('finish');
+        var stream = makeImg.imgMake(data,username);
+
         //yield makeImg.imgMake(data,username,buf);;
         console.log(stream);
         res.end('success');

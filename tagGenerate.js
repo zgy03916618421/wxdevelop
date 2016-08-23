@@ -196,7 +196,7 @@ var posObj = [
         }
     ]
 ]
-exports.imgMake = function (data,username,imgStream) {
+exports.imgMake = function (data,username) {
         var Image = Canvas.Image;
         var maskImg = new Image();
         var hlTitleImg = new Image();
