@@ -93,7 +93,7 @@ function imgSend(req,res) {
         request.get('http://7xj2i2.com2.z0.glb.qiniucdn.com/197.png').pipe(fs.createWriteStream('temp.png'))
         
         //yield makeImg.imgMake(data,username,buf);
-       // var stream=yield makeImg.imgMake(data,username,buf);
+        var stream=yield makeImg.imgMake(data,username);
        // fs.writeFileSync('test.jpg',stream);
         //console.log(stream);
         res.end('success');

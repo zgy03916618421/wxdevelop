@@ -196,7 +196,7 @@ var posObj = [
         }
     ]
 ]
-exports.imgMake = function (data,username,buf) {
+exports.imgMake = function (data,username) {
     return new Promise(function (resolve,reject) {
         var Image = Canvas.Image;
         var maskImg = new Image();
