@@ -92,7 +92,7 @@ function imgSend(req,res) {
             url : data[2]
         }
         var imgStream = yield httpUtils.get(opts);
-        var stream = yield makeImg.imgMake(data,username,imgStream)
+        makeImg.imgMake(data,username,imgStream);
         //request.get(data[2]).pipe(fs.createWriteStream('temp.png'))
         //yield makeImg.imgMake(data,username,buf);;
         
