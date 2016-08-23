@@ -237,9 +237,9 @@ exports.imgMake = function (data,username,imgStream) {
                 text: tagErect
             })
             console.log('here am I');
-            hlTitleImg.src = imgStream;
+            //hlTitleImg.src = imgStream;
             console.log('may wrong here');
-            context.drawImage(hlTitleImg,100,318);
+            //context.drawImage(hlTitleImg,100,318);
             console.log('hers?');
             var stream = canvas.createPNGStream();
             //var out = fs.createWriteStream(path.join(__dirname, 'test.png'));
