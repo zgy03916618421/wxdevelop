@@ -8,7 +8,7 @@ var co = require('co');
 var request = require('request');
 var redisTemplate = require('../redisTemplate');
 var httpUtils = require('../HttpUtils');
-var makeImg = require('../tagGenerate');
+//var makeImg = require('../tagGenerate');
 var fs = require('fs');
 //var express=require('express');
 //var app=express();
@@ -41,9 +41,7 @@ function wxcheckSignature(req,res) {
 }
 function imgSend(req,res) {
     co(function *() {
-        console.log('join in');
         var token = yield redisTemplate.get('access_token_wechat');
-        console.log(token);
         if (token == null){
             var opts = { method: 'GET',
                 url: 'https://api.weixin.qq.com/cgi-bin/token',
@@ -54,19 +52,14 @@ function imgSend(req,res) {
                 };
             var result = yield httpUtils.get(opts);
             result = JSON.parse(result);
-            console.log(result);
             token = result.access_token;
             yield redisTemplate.set('access_token_wechat',token);
             yield redisTemplate.expire("access_token_wechat",7200);
         }
-        console.log(token);
         var xml = yield accquireXML(req);
-        console.log(xml);
         var xmljs = yield xml2json(xml);
-        console.log(xmljs);
        // var openid = xmljs.xml.FromUserName;
         var content = xmljs.xml.Content;
-        console.log(content);
         //console.log(openid);
         //var url = 'https://api.weixin.qq.com/cgi-bin/user/info';
         //var opts = {
@@ -83,9 +76,7 @@ function imgSend(req,res) {
         //userinfo=JSON.parse(userinfo);
         //var username = userinfo.nickname;
         var username = 'zhougy';
-        console.log(username);
         var url = encodeURI('https://dev-goat.beautifulreading.com/goat/bookdetail/'+content+'/57a7fecce779893b48000002');
-        console.log(url);
         var opts = {
             method : 'GET',
             url : url
@@ -102,7 +93,7 @@ function imgSend(req,res) {
 
         var buf = yield httpUtils.get(opts);
         console.log(buf);
-        yield makeImg.imgMake(data,username,buf);
+        //yield makeImg.imgMake(data,username,buf);
         //var stream=yield makeImg.imgMake(data,username);
        // fs.writeFileSync('test.jpg',stream);
         //console.log(stream);
