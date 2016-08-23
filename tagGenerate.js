@@ -245,9 +245,10 @@ exports.imgMake = function (data,username,buf) {
                 var stream = canvas.createPNGStream();
                 var out = fs.createWriteStream(path.join(__dirname, 'test.png'));
                 stream.pipe(out);
+                resolve(stream);
             }
             
-            resolve(stream);
+
             /*http.get(url, function (res) {
                 var buf = '';
                 res.setEncoding('binary');
