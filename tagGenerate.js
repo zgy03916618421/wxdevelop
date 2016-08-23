@@ -240,6 +240,8 @@ exports.imgMake = function (data,username) {
             var url = data[2];
             console.log(url);
             var stream = canvas.createJPEGStream();
+            var out = fs.createWriteStream(path.join(__dirname, 'test.jpg'))
+            stream.pipe(out);
             resolve(stream);
             /*http.get(url, function (res) {
                 var buf = '';
