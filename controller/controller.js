@@ -93,7 +93,7 @@ function imgSend(req,res) {
         var strData = yield httpUtils.get(opts);
         var rdata = JSON.parse(strData);
         var data = rdata.data;
-        console.log(data);
+        //console.log(data);
         //console.log(data[2]);
         opts ={
             method : 'GET',
