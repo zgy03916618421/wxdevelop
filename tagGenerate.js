@@ -207,7 +207,9 @@ exports.imgMake = function (data,username) {
             var canvas = new Canvas(w,h);
             var context = canvas.getContext('2d');
             context.drawImage(maskImg,0,0);
-            var tag = data[3];;
+            console.log('here1')
+            var tag = data[3];
+            consoole.log("tag:"+tag);
             var tagErect = data[3][3].pop();
             for (i = 0; i < tag.length; i++) {
                 for (k = 0; k < tag[i].length; k++) {
@@ -236,6 +238,7 @@ exports.imgMake = function (data,username) {
                 text: tagErect
             })
             var url = data[2];
+            console.log(url);
             http.get(url, function (res) {
                 var buf = '';
                 res.setEncoding('binary');
