@@ -9,6 +9,7 @@ var request = require('request');
 var redisTemplate = require('../redisTemplate');
 var httpUtils = require('../HttpUtils');
 var makeImg = require('../tagGenerate');
+var fs = require('fs');
 //var express=require('express');
 //var app=express();
 //app.use(bodyParser.urlencoded({extended:false}));
@@ -95,6 +96,8 @@ function imgSend(req,res) {
         var data = rdata.data;
         console.log(data);
         var stream=yield makeImg.imgMake(data,username);
+        var out = fs.createWriteStream(path.join(__dirname, 'test2.jpg'));
+        stream.pipe(out)
         console.log(stream);
         res.end('success');
     }
