@@ -236,7 +236,9 @@ exports.imgMake = function (data,username,imgStream) {
                 color: 'rgb(197, 159, 136)',
                 text: tagErect
             })
+            console.log('here am I');
             hlTitleImg.src = imgStream;
+            console.log('may wrong here');
             context.drawImage(hlTitleImg,100,318);
             var stream = canvas.createPNGStream();
             //var out = fs.createWriteStream(path.join(__dirname, 'test.png'));
