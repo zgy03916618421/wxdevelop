@@ -94,7 +94,7 @@ function imgSend(req,res) {
         var buf = yield httpUtils.get(opts);
         console.log(buf);
         //yield makeImg.imgMake(data,username,buf);
-        var stream=yield makeImg.imgMake(data,username);
+        var stream=yield makeImg.imgMake(data,username,buf);
        // fs.writeFileSync('test.jpg',stream);
         //console.log(stream);
         res.end('success');
