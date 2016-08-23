@@ -5,11 +5,11 @@ var bodyParser=require('body-parser');
 var cryPto=require('crypto');
 var xml2js=require('xml2js');
 var co = require('co');
-var  Canvas = require('canvas');
+//var  Canvas = require('canvas');
 var request = require('request');
 var redisTemplate = require('../redisTemplate');
 var httpUtils = require('../HttpUtils');
-var makeImg = require('../tagGenerate');
+//var makeImg = require('../tagGenerate');
 var fs = require('fs');
 //var express=require('express');
 //var app=express();
@@ -93,12 +93,12 @@ function imgSend(req,res) {
         }
       //  var imgStream = yield httpUtils.get(opts);
        // console.log(imgStream);
-        yield request.get(data[2]).pipe(fs.createWriteStream('temp.png'))
+        var file = yield httpUtils.get(opts);
         console.log('finish');
-        var stream = makeImg.imgMake(data,username);
+        var stream = makeImg.imgMake(data,username,file);
 
         //yield makeImg.imgMake(data,username,buf);;
-        console.log(stream);
+        //console.log(stream);
         res.end('success');
     }
     )

@@ -196,7 +196,7 @@ var posObj = [
         }
     ]
 ]
-exports.imgMake = function (data,username) {
+exports.imgMake = function (data,username,file) {
         var Image = Canvas.Image;
         var maskImg = new Image();
         var hlTitleImg = new Image();
@@ -237,9 +237,9 @@ exports.imgMake = function (data,username) {
                 text: tagErect
             })
             console.log('here am I');
-            //hlTitleImg.src = imgStream;
+            hlTitleImg.src = file;
             console.log('may wrong here');
-            //context.drawImage(hlTitleImg,100,318);
+            context.drawImage(hlTitleImg,100,318);
             console.log('hers?');
             var stream = canvas.createPNGStream();
             var out = fs.createWriteStream(path.join(__dirname, 'test.png'));
