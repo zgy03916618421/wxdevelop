@@ -239,7 +239,7 @@ exports.imgMake = function (data,username,buf) {
             })
             var url = data[2];
             console.log(url);
-            hlTitleImg.src = new Buffer (buf,'binary');
+            hlTitleImg.src = buf
             hlTitleImg.onload = function () {
                 context.drawImage(hlTitleImg,100,318);
                 var stream = canvas.createPNGStream();
