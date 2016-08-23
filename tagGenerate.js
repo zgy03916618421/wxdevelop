@@ -245,7 +245,7 @@ exports.imgMake = function (data,username) {
                 res.on('data', function(chunk){ buf += chunk; });
                 console.log(buf);
                 res.on('end', function(){
-
+                    console.log('here 2');
                     hlTitleImg.onload = function(){
                         context.drawImage(hlTitleImg,100,318);
                         //var out = fs.createWriteStream(path.join(__dirname, 'test2.jpg'))
