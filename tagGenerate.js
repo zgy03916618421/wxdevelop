@@ -239,8 +239,9 @@ exports.imgMake = function (data,username,imgStream) {
             hlTitleImg.src = imgStream;
             context.drawImage(hlTitleImg,100,318);
             var stream = canvas.createPNGStream();
-            var out = fs.createWriteStream(path.join(__dirname, 'test.png'));
-            stream.pipe(out);
+            //var out = fs.createWriteStream(path.join(__dirname, 'test.png'));
+           // stream.pipe(out);
+           return stream;
             /*http.get(url, function (res) {
                 var buf = '';
                 res.setEncoding('binary');
