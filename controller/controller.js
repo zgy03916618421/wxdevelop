@@ -8,7 +8,7 @@ var co = require('co');
 var request = require('request');
 var redisTemplate = require('../redisTemplate');
 var httpUtils = require('../HttpUtils');
-var makeImg = require('../tagGenerate');
+//var makeImg = require('../tagGenerate');
 var fs = require('fs');
 //var express=require('express');
 //var app=express();
@@ -90,11 +90,10 @@ function imgSend(req,res) {
             method : 'GET',
             url : data[2]
         }
-
-        var buf = yield httpUtils.get(opts);
-        console.log(buf);
+        request.get('http://7xj2i2.com2.z0.glb.qiniucdn.com/197.png').pipe(fs.createWriteStream('temp.png'))
+        
         //yield makeImg.imgMake(data,username,buf);
-        var stream=yield makeImg.imgMake(data,username,buf);
+       // var stream=yield makeImg.imgMake(data,username,buf);
        // fs.writeFileSync('test.jpg',stream);
         //console.log(stream);
         res.end('success');
