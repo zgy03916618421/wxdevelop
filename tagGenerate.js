@@ -196,69 +196,70 @@ var posObj = [
         }
     ]
 ]
-exports.imgMake = function (data) {
-    var Image = Canvas.Image;
-    var maskImg = new Image();
-    var hlTitleImg = new Image();
-    maskImg.onload = function(){
-        var w = 720;
-        var h = 840;
-        var canvas = new Canvas(w,h);
-        var context = canvas.getContext('2d');
-        context.drawImage(maskImg,0,0);
-        var tag = data[3];
-        console.log(tag);
-        var tagErect = data[3][3].pop();
-        console.log(tagErect);
-        for (i = 0; i < tag.length; i++) {
-            for (k = 0; k < tag[i].length; k++) {
-                posObj[i][k].text = tag[i][k];
-            }
-        }
-        setText(context, posObj);
-        setText(context, [
-            [
-                {
-                    x: 68,
-                    y: 130,
-                    fontSize: 18,
-                    color: 'rgb(64, 47, 42)',
-                    text: '我是zgy',
-                    fontWeight: 'bold',
-                    width: 270
+exports.imgMake = function (data,username) {
+    return new Promise(function (resolve,reject) {
+        var Image = Canvas.Image;
+        var maskImg = new Image();
+        var hlTitleImg = new Image();
+        maskImg.onload = function(){
+            var w = 720;
+            var h = 840;
+            var canvas = new Canvas(w,h);
+            var context = canvas.getContext('2d');
+            context.drawImage(maskImg,0,0);
+            var tag = data[3];;
+            var tagErect = data[3][3].pop();
+            for (i = 0; i < tag.length; i++) {
+                for (k = 0; k < tag[i].length; k++) {
+                    posObj[i][k].text = tag[i][k];
                 }
-            ]
-        ])
-        drawTextErect(context, {
-            x: 288.5,
-            y: 212,
-            fontSize: 18,
-            color: 'rgb(197, 159, 136)',
-            text: tagErect
-        })
-        var url = data[2];
-        http.get(url, function (res) {
-            var buf = '';
-            res.setEncoding('binary');
-            res.on('data', function(chunk){ buf += chunk; });
-            res.on('end', function(){
+            }
+            setText(context, posObj);
+            setText(context, [
+                [
+                    {
+                        x: 68,
+                        y: 130,
+                        fontSize: 18,
+                        color: 'rgb(64, 47, 42)',
+                        text: '我是'+username,
+                        fontWeight: 'bold',
+                        width: 270
+                    }
+                ]
+            ])
+            drawTextErect(context, {
+                x: 288.5,
+                y: 212,
+                fontSize: 18,
+                color: 'rgb(197, 159, 136)',
+                text: tagErect
+            })
+            var url = data[2];
+            http.get(url, function (res) {
+                var buf = '';
+                res.setEncoding('binary');
+                res.on('data', function(chunk){ buf += chunk; });
+                res.on('end', function(){
 
-                hlTitleImg.onload = function(){
-                    context.drawImage(hlTitleImg,100,318);
-                    var out = fs.createWriteStream(path.join(__dirname, 'test2.jpg'))
-                    var stream = canvas.createJPEGStream();
-                    stream.pipe(out)
+                    hlTitleImg.onload = function(){
+                        context.drawImage(hlTitleImg,100,318);
+                        //var out = fs.createWriteStream(path.join(__dirname, 'test2.jpg'))
+                        var stream = canvas.createJPEGStream();
+                        //stream.pipe(out)
+                        resolve(stream);
 
-                };
-                hlTitleImg.onerror = function(err){
-                    console.log(err);
-                };
-                hlTitleImg.src = new Buffer(buf, 'binary');
+                    };
+                    hlTitleImg.onerror = function(err){
+                        reject(err);
+                    };
+                    hlTitleImg.src = new Buffer(buf, 'binary');
+                });
             });
-        });
 
-    }
-    maskImg.src = path.join(__dirname,'img/make_bg.png');
+        }
+        maskImg.src = path.join(__dirname,'img/make_bg.png');
+    })
 }
 
 function setText(context, list){

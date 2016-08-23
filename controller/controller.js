@@ -8,6 +8,7 @@ var co = require('co');
 var request = require('request');
 var redisTemplate = require('../redisTemplate');
 var httpUtils = require('../HttpUtils');
+var makeImg = require('../tagGenerate');
 //var express=require('express');
 //var app=express();
 //app.use(bodyParser.urlencoded({extended:false}));
@@ -63,6 +64,7 @@ function imgSend(req,res) {
         var xmljs = yield xml2json(xml);
         console.log(xmljs);
         var openid = xmljs.xml.FromUserName;
+        var content = xmljs.Content;
         console.log(openid);
         var url = 'https://api.weixin.qq.com/cgi-bin/user/info';
         opts = {
@@ -78,19 +80,14 @@ function imgSend(req,res) {
         console.log(userinfo);
         userinfo=JSON.parse(userinfo);
         var username = userinfo.nickname;
-
-        /*xml2js.parseString(xml,{explicitArray : false},function (err,json) {
-            console.log(json);
-            user_openid = json.FromUserName;
-            Content = json.Content;
-        })*/
-       /* req.on('data',function (chunk) {
-            xml2js.parseString(chunk,{explicitArray : false},function (err,json) {
-                console.log(json);
-                user_openid = json.FromUserName;
-                Content = json.Content;
-            })
-        });*/
+        url = 'https://dev-goat.beautifulreading.com/goat/bookdetail/'+content+'/57a7fecce779893b48000002'
+        opts = {
+            method : 'GET',
+            url : url
+        }
+        var data = yield httpUtils.get(opts);
+        console.log(data);
+        var stream=yield makeImg.imgMake(data,username);
         res.end('success');
     }
     )
