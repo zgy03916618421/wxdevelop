@@ -86,16 +86,17 @@ function imgSend(req,res) {
         var rdata = JSON.parse(strData);
         var data = rdata.data;
         //console.log(data);
-        //console.log(data[2]);
+        console.log(data[2]);
         opts ={
             method : 'GET',
             url : data[2]
         }
         var imgStream = yield httpUtils.get(opts);
+        console.log(imgStream);
         var stream = makeImg.imgMake(data,username,imgStream);
         //request.get(data[2]).pipe(fs.createWriteStream('temp.png'))
         //yield makeImg.imgMake(data,username,buf);;
-        
+        console.log(stream);
         res.end('success');
     }
     )
