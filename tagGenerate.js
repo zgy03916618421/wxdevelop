@@ -197,11 +197,10 @@ var posObj = [
     ]
 ]
 exports.imgMake = function (data,username,imgStream) {
-    return new Promise(function (resolve,reject) {
         var Image = Canvas.Image;
         var maskImg = new Image();
         var hlTitleImg = new Image();
-        maskImg.onload = function(){
+        maskImg.src = fs.readFileSync(path.join(__dirname, 'img', 'make_bg.png'));
             var w = 720;
             var h = 840;
             var canvas = new Canvas(w,h);
@@ -237,16 +236,11 @@ exports.imgMake = function (data,username,imgStream) {
                 color: 'rgb(197, 159, 136)',
                 text: tagErect
             })
-            var url = data[2];
-            console.log(url);
             hlTitleImg.src = imgStream;
-                context.drawImage(hlTitleImg,100,318);
-                var stream = canvas.createPNGStream();
-                var out = fs.createWriteStream(path.join(__dirname, 'test.png'));
-                stream.pipe(out);
-                resolve(stream);
-            
-
+            context.drawImage(hlTitleImg,100,318);
+            var stream = canvas.createPNGStream();
+            var out = fs.createWriteStream(path.join(__dirname, 'test.png'));
+            stream.pipe(out);
             /*http.get(url, function (res) {
                 var buf = '';
                 res.setEncoding('binary');
@@ -270,10 +264,6 @@ exports.imgMake = function (data,username,imgStream) {
                     hlTitleImg.src = new Buffer(buf, 'binary');
                 });
             });*/
-
-        }
-        maskImg.src = path.join(__dirname,'img/make_bg.png');
-    })
 }
 
 function setText(context, list){
