@@ -64,30 +64,35 @@ function imgSend(req,res) {
         var xmljs = yield xml2json(xml);
         console.log(xmljs);
        // var openid = xmljs.xml.FromUserName;
-        var content = xmljs.Content;
+        var content = xmljs.xml.Content;
+        console.log(content);
         //console.log(openid);
         //var url = 'https://api.weixin.qq.com/cgi-bin/user/info';
-        opts = {
-            method : 'GET',
-            url : url,
-            qs:
-            {
-                access_token :token,
-                openid : openid
-            }
-        };
+        //var opts = {
+        //    method : 'GET',
+        //    url : url,
+         //   qs:
+         //   {
+         //       access_token :token,
+         //       openid : openid
+         //   }
+      //  };
         //var userinfo = yield httpUtils.get(opts);
         //console.log(userinfo);
         //userinfo=JSON.parse(userinfo);
         //var username = userinfo.nickname;
         var username = 'zhougy';
-        url = 'https://dev-goat.beautifulreading.com/goat/bookdetail/'+content+'/57a7fecce779893b48000002'
-        opts = {
+        console.log(username);
+        var url = encodeURI('https://dev-goat.beautifulreading.com/goat/bookdetail/'+content+'/57a7fecce779893b48000002');
+        console.log(url);
+        var opts = {
             method : 'GET',
             url : url
         }
         var strData = yield httpUtils.get(opts);
-        var data = strData.data;
+        console.log(strData);
+        var rdata = JSON.parse(strData);
+        var data = rdata.data;
         console.log(data);
         var stream=yield makeImg.imgMake(data,username);
         console.log(stream);
