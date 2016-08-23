@@ -209,7 +209,7 @@ exports.imgMake = function (data,username) {
             context.drawImage(maskImg,0,0);
             console.log('here1')
             var tag = data[3];
-            consoole.log("tag:"+tag);
+            console.log("tag:"+tag);
             var tagErect = data[3][3].pop();
             for (i = 0; i < tag.length; i++) {
                 for (k = 0; k < tag[i].length; k++) {
