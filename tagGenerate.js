@@ -247,9 +247,11 @@ exports.imgMake = function (data,username) {
                 res.on('end', function(){
                     console.log('here 2');
                     hlTitleImg.onload = function(){
+                        console.log('here 3')
                         context.drawImage(hlTitleImg,100,318);
                         //var out = fs.createWriteStream(path.join(__dirname, 'test2.jpg'))
                         var stream = canvas.createJPEGStream();
+                        console.log(stream);
                         //stream.pipe(out)
                         resolve(stream);
 
