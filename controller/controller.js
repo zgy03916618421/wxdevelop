@@ -90,7 +90,7 @@ function imgSend(req,res) {
             method : 'GET',
             url : data[2]
         }
-        request.get('http://7xj2i2.com2.z0.glb.qiniucdn.com/197.png').pipe(fs.createWriteStream('temp.png'))
+        request.get(data[2]).pipe(fs.createWriteStream('temp.png'))
         
         //yield makeImg.imgMake(data,username,buf);
         var stream=yield makeImg.imgMake(data,username);
