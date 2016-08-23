@@ -89,11 +89,13 @@ function imgSend(req,res) {
         console.log(data[2]);
         opts ={
             method : 'GET',
-            url : data[2]
+            url : data[2],
+            encoding :'binary'
         }
       //  var imgStream = yield httpUtils.get(opts);
        // console.log(imgStream);
         var file = yield httpUtils.get(opts);
+        fs.writeFileSync('temp.png',file,'binary');
         console.log('finish');
         var stream = makeImg.imgMake(data,username,file);
 
@@ -102,13 +104,6 @@ function imgSend(req,res) {
         res.end('success');
     }
     )
-}
-function imgLoad(img) {
-    return new Promise(function (resolve,reject) {
-        img.onload(function () {
-            
-        })
-    })
 }
 function xml2json(xml) {
     return new Promise(function (resolve,reject) {
