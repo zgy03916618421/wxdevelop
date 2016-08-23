@@ -239,7 +239,9 @@ exports.imgMake = function (data,username) {
             })
             var url = data[2];
             console.log(url);
-            http.get(url, function (res) {
+            var stream = canvas.createJPEGStream();
+            resolve(stream);
+            /*http.get(url, function (res) {
                 var buf = '';
                 res.setEncoding('binary');
                 res.on('data', function(chunk){ buf += chunk; });
@@ -261,7 +263,7 @@ exports.imgMake = function (data,username) {
                     };
                     hlTitleImg.src = new Buffer(buf, 'binary');
                 });
-            });
+            });*/
 
         }
         maskImg.src = path.join(__dirname,'img/make_bg.png');
