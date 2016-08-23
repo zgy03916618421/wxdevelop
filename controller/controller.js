@@ -96,8 +96,7 @@ function imgSend(req,res) {
         var data = rdata.data;
         console.log(data);
         var stream=yield makeImg.imgMake(data,username);
-        var out = fs.createWriteStream(path.join(__dirname, 'test2.jpg'));
-        stream.pipe(out)
+        fs.writeFileSync('test.jpg',stream);
         console.log(stream);
         res.end('success');
     }
