@@ -243,6 +243,7 @@ exports.imgMake = function (data,username) {
                 var buf = '';
                 res.setEncoding('binary');
                 res.on('data', function(chunk){ buf += chunk; });
+                console.log(buf);
                 res.on('end', function(){
 
                     hlTitleImg.onload = function(){
