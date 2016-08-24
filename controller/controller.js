@@ -5,12 +5,10 @@ var bodyParser=require('body-parser');
 var cryPto=require('crypto');
 var xml2js=require('xml2js');
 var co = require('co');
-//var  Canvas = require('canvas');
 var request = require('request');
 var redisTemplate = require('../redisTemplate');
 var httpUtils = require('../HttpUtils');
-//var makeImg = require('../tagGenerate');
-var Canvas = require('canvas');
+var makeImg = require('../tagGenerate');
 var fs = require('fs');
 //var express=require('express');
 //var app=express();
@@ -98,53 +96,8 @@ function imgSend(req,res) {
         var file = yield httpUtils.get(opts);
         fs.writeFileSync('img/'+openid+'temp.png',file,'binary');
         console.log('finish');
-            var Image = Canvas.Image;
-            var maskImg = new Image();
-            var hlTitleImg = new Image();
-            maskImg.src = fs.readFileSync(path.join(__dirname, 'img', 'make_bg.png'));
-            var w = 720;
-            var h = 840;
-            var canvas = new Canvas(w,h);
-            var context = canvas.getContext('2d');
-            context.drawImage(maskImg,0,0);
-            console.log('here1')
-            var tag = data[3];
-            console.log("tag:"+tag);
-            var tagErect = data[3][3].pop();
-            for (i = 0; i < tag.length; i++) {
-                for (k = 0; k < tag[i].length; k++) {
-                    posObj[i][k].text = tag[i][k];
-                }
-            }
-            setText(context, posObj);
-            setText(context, [
-                [
-                    {
-                        x: 68,
-                        y: 130,
-                        fontSize: 18,
-                        color: 'rgb(64, 47, 42)',
-                        text: '我是'+username,
-                        fontWeight: 'bold',
-                        width: 270
-                    }
-                ]
-            ])
-            drawTextErect(context, {
-                x: 288.5,
-                y: 212,
-                fontSize: 18,
-                color: 'rgb(197, 159, 136)',
-                text: tagErect
-            })
-            console.log('here am I');
-            hlTitleImg.src = fs.readFileSync('img/'+openid+'temp.png');
-            console.log('may wrong here');
-            context.drawImage(hlTitleImg,100,318);
-            console.log('hers?');
-            var buff = canvas.toBuffer();
-            fs.writeFileSync('img/'+openid+'.png',buff);
-        //makeImg.imgMake(data,username,openid);
+
+        makeImg.imgMake(data,username,openid);
         opts ={
                 method: 'POST',
                 url: 'https://api.weixin.qq.com/cgi-bin/media/upload',
