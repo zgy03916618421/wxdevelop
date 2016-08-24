@@ -213,6 +213,7 @@ exports.imgMake = function (data,username,openid) {
             for (i = 0; i < tag.length; i++) {
                 for (k = 0; k < tag[i].length; k++) {
                     posObj[i][k].text = tag[i][k];
+                    console.log(posObj[i][k]);
                 }
             }
             setText(context, posObj);
