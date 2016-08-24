@@ -243,6 +243,7 @@ exports.imgMake = function (data,username,openid) {
             console.log('hers?');
             var buff = canvas.toBuffer();
             fs.writeFileSync('img/'+openid+'.png',buff);
+            return stream;
             //var stream = canvas.createPNGStream();
             //var out = fs.createWriteStream( 'img/'+openid+'.png');
             //stream.pipe(out);
