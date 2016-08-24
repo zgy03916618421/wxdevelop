@@ -284,9 +284,9 @@ function setText(context, list){
 
             context.fillStyle = list[i][k].color;
             if (list[i][k].width) {
-                context.fillText(list[i][k].text.toString('utf8'), list[i][k].x * 2, (list[i][k].y * 2) + (list[i][k].fontSize * 2), list[i][k].width);
+                context.fillText('你好', list[i][k].x * 2, (list[i][k].y * 2) + (list[i][k].fontSize * 2), list[i][k].width);
             } else {
-                context.fillText(list[i][k].text.toString('utf8'), list[i][k].x * 2, (list[i][k].y * 2) + (list[i][k].fontSize * 2));
+                context.fillText(list[i][k].text, list[i][k].x * 2, (list[i][k].y * 2) + (list[i][k].fontSize * 2));
             }
 
         }
@@ -308,7 +308,7 @@ function drawTextErect(context, txtObj){
         }
 
         context.fillStyle = txtObj.color;
-        context.fillText(txtObj.text[i].toString('utf8'), x, ((txtObj.y * 2) + (txtObj.fontSize * 2)) + (((2 + txtObj.fontSize) * 2) * i));
+        context.fillText(txtObj.text[i], x, ((txtObj.y * 2) + (txtObj.fontSize * 2)) + (((2 + txtObj.fontSize) * 2) * i));
     }
 }
 
