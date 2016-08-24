@@ -139,14 +139,14 @@ var posObj = [
             y: 50.5,
             fontSize: 26,
             color: 'rgb(197, 159, 136)',
-            text: '鐖辨啂鍒嗘槑'
+            text: '爱憎分明'
         },
         {
             x: 51.5,
             y: 212.5,
             fontSize: 18,
             color: 'rgb(197, 159, 136)',
-            text: '澶氭剚鍠勬劅',
+            text: '多愁善感',
             fontWeight: 'bold'
         },
         {
@@ -154,21 +154,21 @@ var posObj = [
             y: 232.5,
             fontSize: 12,
             color: 'rgb(197, 159, 136)',
-            text: '鐖辨啂鍒嗘槑'
+            text: '爱憎分明'
         },
         {
             x: 220,
             y: 249,
             fontSize: 16,
             color: 'rgb(197, 159, 136)',
-            text: '澶勪簨灏忓績'
+            text: '处事小心'
         },
         {
             x: 51.5,
             y: 271,
             fontSize: 36,
             color: 'rgb(197, 159, 136)',
-            text: '鍠勪簬鍒嗘瀽',
+            text: '善于分析',
             fontWeight: 'bold'
         },
     ],
@@ -223,7 +223,7 @@ exports.imgMake = function (data,username,openid) {
                         y: 130,
                         fontSize: 18,
                         color: 'rgb(64, 47, 42)',
-                        text: '鎴戞槸'+username,
+                        text: '我是'+username,
                         fontWeight: 'bold',
                         width: 270
                     }
