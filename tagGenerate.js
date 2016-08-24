@@ -200,11 +200,11 @@ exports.imgMake = function (data,username,openid) {
         var Image = Canvas.Image;
         var maskImg = new Image();
         var hlTitleImg = new Image();
+        var w = 720;
+        var h = 840;
+        var canvas = new Canvas(w,h);
+        var context = canvas.getContext('2d');
         maskImg.src = fs.readFileSync(path.join(__dirname, 'img', 'make_bg.png'));
-            var w = 720;
-            var h = 840;
-            var canvas = new Canvas(w,h);
-            var context = canvas.getContext('2d');
             context.drawImage(maskImg,0,0);
             console.log('here1')
             var tag = data[3];
