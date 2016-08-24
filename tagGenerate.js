@@ -277,9 +277,9 @@ function setText(context, list){
         arrLen = list[i].length;
         for (k = 0; k < arrLen; k++) {
             if (list[i][k].fontWeight) {
-                context.font = list[i][k].fontWeight + ' ' + (list[i][k].fontSize * 2) + 'px \"PingFangSC-Regular\"';
+                context.font = list[i][k].fontWeight + ' ' + (list[i][k].fontSize * 2) + 'px PingFangSC-Regular';
             } else {
-                context.font = (list[i][k].fontSize * 2) + 'px \"PingFangSC-Regular\"';
+                context.font = (list[i][k].fontSize * 2) + 'px PingFangSC-Regular';
             }
 
             context.fillStyle = list[i][k].color;
