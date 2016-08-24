@@ -196,7 +196,7 @@ var posObj = [
         }
     ]
 ]
-exports.imgMake = function (data,username,filename) {
+exports.imgMake = function (data,username,openid) {
         var Image = Canvas.Image;
         var maskImg = new Image();
         var hlTitleImg = new Image();
@@ -237,7 +237,7 @@ exports.imgMake = function (data,username,filename) {
                 text: tagErect
             })
             console.log('here am I');
-            hlTitleImg.src = fs.readFileSync(filename);
+            hlTitleImg.src = fs.readFileSync('img/'+openid+'temp.png');
             console.log('may wrong here');
             context.drawImage(hlTitleImg,100,318);
             console.log('hers?');
