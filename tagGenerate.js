@@ -275,6 +275,7 @@ exports.imgMake = function (data,username,openid) {
             });*/
 }
 function setText(context, list){
+    console.log('join in settext')
     var i, k, listLen = list.length, arrLen;
     for (i = 0; i < listLen; i++){
         arrLen = list[i].length;
@@ -291,6 +292,7 @@ function setText(context, list){
             } else {
                 context.fillText(list[i][k].text, list[i][k].x * 2, (list[i][k].y * 2) + (list[i][k].fontSize * 2));
             }
+            console.log('here right?')
 
         }
     }
