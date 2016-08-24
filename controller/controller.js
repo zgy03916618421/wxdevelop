@@ -9,7 +9,7 @@ var co = require('co');
 var request = require('request');
 var redisTemplate = require('../redisTemplate');
 var httpUtils = require('../HttpUtils');
-var makeImg = require('../tagGenerate');
+//var makeImg = require('../tagGenerate');
 var fs = require('fs');
 //var express=require('express');
 //var app=express();
@@ -59,24 +59,24 @@ function imgSend(req,res) {
         }
         var xml = yield accquireXML(req);
         var xmljs = yield xml2json(xml);
-       // var openid = xmljs.xml.FromUserName;
+        var openid = xmljs.xml.FromUserName;
         var content = xmljs.xml.Content;
-        //console.log(openid);
-        //var url = 'https://api.weixin.qq.com/cgi-bin/user/info';
-        //var opts = {
-        //    method : 'GET',
-        //    url : url,
-         //   qs:
-         //   {
-         //       access_token :token,
-         //       openid : openid
-         //   }
-      //  };
-        //var userinfo = yield httpUtils.get(opts);
-        //console.log(userinfo);
-        //userinfo=JSON.parse(userinfo);
-        //var username = userinfo.nickname;
-        var username = 'zhougy';
+        console.log(openid);
+        var url = 'https://api.weixin.qq.com/cgi-bin/user/info';
+        var opts = {
+            method : 'GET',
+            url : url,
+            qs:
+            {
+                access_token :token,
+                openid : openid
+            }
+        };
+        var userinfo = yield httpUtils.get(opts);
+        console.log(userinfo);
+        userinfo=JSON.parse(userinfo);
+        var username = userinfo.nickname;
+        console.log(username);
         var url = encodeURI('https://dev-goat.beautifulreading.com/goat/bookdetail/'+content+'/57a7fecce779893b48000002');
         var opts = {
             method : 'GET',
@@ -95,10 +95,45 @@ function imgSend(req,res) {
       //  var imgStream = yield httpUtils.get(opts);
        // console.log(imgStream);
         var file = yield httpUtils.get(opts);
-        fs.writeFileSync('temp.png',file,'binary');
+        fs.writeFileSync('img/'+openid+'temp.png',file,'binary');
         console.log('finish');
-        var stream = makeImg.imgMake(data,username,file);
-
+        var filename = 'img/'+openid+'temp.png'
+        var stream = makeImg.imgMake(data,username,filename);
+        opts ={
+                method: 'POST',
+                url: 'https://api.weixin.qq.com/cgi-bin/media/upload',
+                qs:
+                { access_token: token,
+                    type: 'image' },
+                headers:
+                {
+                    'content-type': 'multipart/form-data; boundary=---011000010111000001101001' },
+                formData:
+                { media:
+                { value: fs.createReadStream( 'img/'+openid+'.png'),
+                    options : {filename : openid+'temp.png',contentType : 'image/png'}
+                } }
+            }
+        var upresult = yield httpUtils.post(opts);
+        console.log(upresult);
+        var upjson = JSON.parse(upresult);
+        var media_id = upjson.media_id;
+        console.log(media_id);
+        opts ={
+            method : 'POST',
+            url: 'https://api.weixin.qq.com/cgi-bin/message/custom/send',
+            qs: { access_token: token },
+            headers:{
+                'content-type': 'application/json'
+            },
+            body:
+            { touser: openid,
+                msgtype: 'image',
+                image: { media_id: media_id } },
+            json: true
+        }
+        var messageresult = yield httpUtils.post(opts);
+        console.log(messageresult);
         //yield makeImg.imgMake(data,username,buf);;
         //console.log(stream);
         res.end('success');

@@ -45,28 +45,28 @@ co(function *() {
     //res = JSON.parse(res.text);
     //var token = res.access_token;
     //console.log(token);
-    var res = yield httpUtils.get('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx9a66afce31e4ec8b&secret=c2b679dbd1ea6c0ffc99155123a25697');
-    res = JSON.parse(res.text);
-    var token = res.access_token;
-    console.log(token);
+    //var res = yield httpUtils.get('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx9a66afce31e4ec8b&secret=c2b679dbd1ea6c0ffc99155123a25697');
+   // res = JSON.parse(res.text);
+    //var token = res.access_token;
+    //console.log(token);
     //var token = '5Ol1CLwnWeAZ2IkfjkqNBgIFYXmvHuKVgfTSWD6j8fbNQcFRCmZlQvY8mPw0vwSpI-aQHOBxhB2KLscoYoRcdLnX_6ASjE5ZHehHc7l4iyj_H6ybqqlUZEq8t8A1Dh05AIChAHAQYS';
     var opts ={
         method: 'POST',
         url: 'https://api.weixin.qq.com/cgi-bin/media/upload',
         qs:
-        { access_token: '5Ol1CLwnWeAZ2IkfjkqNBgIFYXmvHuKVgfTSWD6j8fbNQcFRCmZlQvY8mPw0vwSpI-aQHOBxhB2KLscoYoRcdLnX_6ASjE5ZHehHc7l4iyj_H6ybqqlUZEq8t8A1Dh05AIChAHAQYS',
+        { access_token: 'nUMQiB8s2NlxeMUNTfIjZLQdj7lWLmNG0HUVTSScBLNp-sx1mehYjf9cHnl6amWzIMY-gRVBv7poeqLH-F6f8CSJ2jB0UP3RxGiaRxGBkhmj5qDHeQPpPNIpdVRchEmJGEZgABATRM',
             type: 'image' },
         headers:
         {
             'content-type': 'multipart/form-data; boundary=---011000010111000001101001' },
         formData:
         { media:
-        { value: fs.createReadStream(__dirname + '/1.jpg'),
-            options : {filename : '1.jpg',contentType : 'image/jpg'}
+        { value: fs.createReadStream(__dirname + '/temp.png'),
+            options : {filename : 'temp.jpg',contentType : 'image/png'}
         } }
     }
-    //var body = yield post1(opts);
-    //console.log(body);
+    var body = yield post1(opts);
+    console.log(body);
     //var rs = yield reqst(url,opts);
     //console.log(rs);
     //var rs = yield post(url,opts);
