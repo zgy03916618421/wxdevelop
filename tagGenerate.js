@@ -247,7 +247,6 @@ exports.imgMake = function (data,username,openid) {
             console.log('hers?');
             var buff = canvas.toBuffer();
             fs.writeFileSync('img/'+openid+'.png',buff);
-            return stream;
             //var stream = canvas.createPNGStream();
             //var out = fs.createWriteStream( 'img/'+openid+'.png');
             //stream.pipe(out);
@@ -275,7 +274,6 @@ exports.imgMake = function (data,username,openid) {
                 });
             });*/
 }
-
 function setText(context, list){
     var i, k, listLen = list.length, arrLen;
     for (i = 0; i < listLen; i++){
@@ -316,8 +314,6 @@ function drawTextErect(context, txtObj){
         context.fillText(txtObj.text[i], x, ((txtObj.y * 2) + (txtObj.fontSize * 2)) + (((2 + txtObj.fontSize) * 2) * i));
     }
 }
-
-
 
 
 
