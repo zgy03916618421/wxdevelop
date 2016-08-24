@@ -205,21 +205,21 @@ exports.imgMake = function (data,username,openid) {
         var canvas = new Canvas(w,h);
         var context = canvas.getContext('2d');
         maskImg.src = fs.readFileSync(path.join(__dirname, 'img', 'make_bg.png'));
-            context.drawImage(maskImg,0,0);
-            console.log('here1')
-            var tag = data[3];
-            console.log("tag:"+tag);
-            var tagErect = data[3][3].pop();
-            console.log(tagErect);
-            for (i = 0; i < tag.length; i++) {
-                for (k = 0; k < tag[i].length; k++) {
-                    posObj[i][k].text = tag[i][k];
-                    console.log(posObj[i][k]);
+        context.drawImage(maskImg,0,0);
+        console.log('here1')
+        var tag = data[3];
+        console.log("tag:"+tag);
+        var tagErect = data[3][3].pop();
+        console.log(tagErect);
+        for (i = 0; i < tag.length; i++) {
+            for (k = 0; k < tag[i].length; k++) {
+                posObj[i][k].text = tag[i][k];
+                console.log(posObj[i][k]);
                 }
             }
-            setText(context, posObj);
-            console.log('settext1');
-            setText(context, [
+        setText(context, posObj);
+        console.log('settext1');
+        setText(context, [
                 [
                     {
                         x: 68,

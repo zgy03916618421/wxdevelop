@@ -8,7 +8,8 @@ var co = require('co');
 var request = require('request');
 var redisTemplate = require('../redisTemplate');
 var httpUtils = require('../HttpUtils');
-var makeImg = require('../tagGenerate');
+//var makeImg = require('../tagGenerate');
+var Canvas = require('canvas');
 var fs = require('fs');
 //var express=require('express');
 //var app=express();
@@ -93,7 +94,57 @@ function imgSend(req,res) {
         }
         var file = yield httpUtils.get(opts);
         fs.writeFileSync('img/'+openid+'temp.png',file,'binary');
-         makeImg.imgMake(data,username,openid);
+         //makeImg.imgMake(data,username,openid);
+            var Image = Canvas.Image;
+            var maskImg = new Image();
+            var hlTitleImg = new Image();
+            var w = 720;
+            var h = 840;
+            var canvas = new Canvas(w,h);
+            var context = canvas.getContext('2d');
+            maskImg.src = fs.readFileSync(path.join(__dirname, 'img', 'make_bg.png'));
+            context.drawImage(maskImg,0,0);
+            console.log('here1')
+            var tag = data[3];
+            console.log("tag:"+tag);
+            var tagErect = data[3][3].pop();
+            console.log(tagErect);
+            for (i = 0; i < tag.length; i++) {
+                for (k = 0; k < tag[i].length; k++) {
+                    posObj[i][k].text = tag[i][k];
+                    console.log(posObj[i][k]);
+                }
+            }
+            setText(context, posObj);
+            console.log('settext1');
+            setText(context, [
+                [
+                    {
+                        x: 68,
+                        y: 130,
+                        fontSize: 18,
+                        color: 'rgb(64, 47, 42)',
+                        text: '我是'+username,
+                        fontWeight: 'bold',
+                        width: 270
+                    }
+                ]
+            ])
+            console.log('settext2')
+            drawTextErect(context, {
+                x: 288.5,
+                y: 212,
+                fontSize: 18,
+                color: 'rgb(197, 159, 136)',
+                text: tagErect
+            })
+            console.log('here am I');
+            hlTitleImg.src = fs.readFileSync('img/'+openid+'temp.png');
+            console.log('may wrong here');
+            context.drawImage(hlTitleImg,100,318);
+            console.log('hers?');
+            var buff = canvas.toBuffer();
+            fs.writeFileSync('img/'+openid+'.png',buff);
         opts ={
                 method: 'POST',
                 url: 'https://api.weixin.qq.com/cgi-bin/media/upload',
@@ -147,6 +198,46 @@ function accquireXML(req,err) {
             resolve(chunk);
         })
     })
+}
+function setText(context, list){
+    var i, k, listLen = list.length, arrLen;
+    for (i = 0; i < listLen; i++){
+        arrLen = list[i].length;
+        for (k = 0; k < arrLen; k++) {
+            if (list[i][k].fontWeight) {
+                context.font = list[i][k].fontWeight + ' ' + (list[i][k].fontSize * 2) + 'px PingFangSC-Regular';
+            } else {
+                context.font = (list[i][k].fontSize * 2) + 'px PingFangSC-Regular';
+            }
+
+            context.fillStyle = list[i][k].color;
+            if (list[i][k].width) {
+                context.fillText(list[i][k].text, list[i][k].x * 2, (list[i][k].y * 2) + (list[i][k].fontSize * 2), list[i][k].width);
+            } else {
+                context.fillText(list[i][k].text, list[i][k].x * 2, (list[i][k].y * 2) + (list[i][k].fontSize * 2));
+            }
+
+        }
+    }
+
+}
+function drawTextErect(context, txtObj){
+    var i = 0,
+        x,
+        y,
+        len = txtObj.text.length;
+    var arrText = [];
+    x = txtObj.x * 2;
+    for (i; i < len; i++) {
+        if (txtObj.fontWeight) {
+            context.font =  txtObj.fontWeight + ' ' + (txtObj.fontSize * 2) + 'px PingFangSC-Regular';
+        } else {
+            context.font = (txtObj.fontSize * 2) + 'px PingFangSC-Regular';
+        }
+
+        context.fillStyle = txtObj.color;
+        context.fillText(txtObj.text[i], x, ((txtObj.y * 2) + (txtObj.fontSize * 2)) + (((2 + txtObj.fontSize) * 2) * i));
+    }
 }
 exports.imgSend=imgSend;
 exports.wxcheckSignature=wxcheckSignature;
