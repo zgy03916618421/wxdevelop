@@ -274,7 +274,27 @@ var data = [
                 posObj[i][k].text = tag[i][k];
                 }
             }
-        setText(context, posObj);
+     var i, k, listLen = posObj.length, arrLen;
+     for (i = 0; i < listLen; i++){
+         arrLen = posObj[i].length;
+         for (k = 0; k < arrLen; k++) {
+             if (posObj[i][k].fontWeight) {
+                 context.font = posObj[i][k].fontWeight + ' ' + (posObj[i][k].fontSize * 2) + 'px PingFangSC-Regular';
+             } else {
+                 context.font = (posObj[i][k].fontSize * 2) + 'px PingFangSC-Regular';
+             }
+
+             context.fillStyle = posObj[i][k].color;
+             if (posObj[i][k].width) {
+                 context.fillText(posObj[i][k].text, posObj[i][k].x * 2, (posObj[i][k].y * 2) + (posObj[i][k].fontSize * 2), posObj[i][k].width);
+             } else {
+                 context.fillText(posObj[i][k].text, posObj[i][k].x * 2, (posObj[i][k].y * 2) + (posObj[i][k].fontSize * 2));
+             }
+
+         }
+     }
+
+     //setText(context, posObj);
         setText(context, [
                 [
                     {
