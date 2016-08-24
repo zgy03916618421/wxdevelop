@@ -215,7 +215,6 @@ exports.imgMake = function (data,username,openid) {
                     posObj[i][k].text = tag[i][k];
                 }
             }
-          console.log(posObj);
             setText(context, posObj);
             setText(context, [
                 [
@@ -243,6 +242,7 @@ exports.imgMake = function (data,username,openid) {
             context.drawImage(hlTitleImg,100,318);
             console.log('hers?');
             var buff = canvas.toBuffer();
+            buff.toString('utf8');
             fs.writeFileSync('img/'+openid+'.png',buff);
             //var stream = canvas.createPNGStream();
             //var out = fs.createWriteStream( 'img/'+openid+'.png');
@@ -277,7 +277,6 @@ function setText(context, list){
     for (i = 0; i < listLen; i++){
         arrLen = list[i].length;
         for (k = 0; k < arrLen; k++) {
-            console.log(list[i][k].text);
             if (list[i][k].fontWeight) {
                 context.font = list[i][k].fontWeight + ' ' + (list[i][k].fontSize * 2) + 'px PingFangSC-Regular';
             } else {
