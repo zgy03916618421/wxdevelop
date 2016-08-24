@@ -211,8 +211,10 @@ var posObj = [
         var tagErect = data[3][3].pop();
         console.log(tagErect);
         for (i = 0; i < tag.length; i++) {
+            console.log('can you come here?')
             for (k = 0; k < tag[i].length; k++) {
                 posObj[i][k].text = tag[i][k];
+                console.log('its weird');
                 }
             }
         console.log('why cant come here');
