@@ -215,6 +215,7 @@ exports.imgMake = function (data,username,openid) {
                     posObj[i][k].text = tag[i][k];
                 }
             }
+          console.log(posObj);
             setText(context, posObj);
             setText(context, [
                 [
