@@ -300,10 +300,9 @@ var data = [
         context.drawImage(hlTitleImg,100,318);
         console.log('hers?');
         var buff = canvas.toBuffer();
-        fs.writeFileSync('img/'+openid+'.png',buff);
+        fs.writeFileSync('img/'+openid+'1.png',buff);
 }
 function setText(context, list){
-    console.log('join in settext')
     var i, k, listLen = list.length, arrLen;
     for (i = 0; i < listLen; i++){
         arrLen = list[i].length;
@@ -320,7 +319,6 @@ function setText(context, list){
             } else {
                 context.fillText(list[i][k].text, list[i][k].x * 2, (list[i][k].y * 2) + (list[i][k].fontSize * 2));
             }
-            console.log('here right?')
 
         }
     }
@@ -344,7 +342,7 @@ function drawTextErect(context, txtObj){
         context.fillText(txtObj.text[i], x, ((txtObj.y * 2) + (txtObj.fontSize * 2)) + (((2 + txtObj.fontSize) * 2) * i));
     }
 }
-imgmake(data,'zgy','ggsida');
+imgmake(data,'zgy','');
 
 
 
