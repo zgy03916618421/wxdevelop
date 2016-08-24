@@ -284,7 +284,7 @@ function setText(context, list){
 
             context.fillStyle = list[i][k].color;
             if (list[i][k].width) {
-                context.fillText('你好', list[i][k].x * 2, (list[i][k].y * 2) + (list[i][k].fontSize * 2), list[i][k].width);
+                context.fillText(list[i][k].text, list[i][k].x * 2, (list[i][k].y * 2) + (list[i][k].fontSize * 2), list[i][k].width);
             } else {
                 context.fillText(list[i][k].text, list[i][k].x * 2, (list[i][k].y * 2) + (list[i][k].fontSize * 2));
             }
