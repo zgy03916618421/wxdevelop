@@ -274,7 +274,9 @@ var data = [
                 posObj[i][k].text = tag[i][k];
                 }
             }
+     console.log('stop here?')
      var i, k, listLen = posObj.length, arrLen;
+     console.log('or stop here?')
      for (i = 0; i < listLen; i++){
          arrLen = posObj[i].length;
          for (k = 0; k < arrLen; k++) {
