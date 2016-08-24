@@ -255,7 +255,7 @@ var data = [
         ]
     ]
 ]
- function imgmake (data,username,openid) {
+ exports.imgMake = function (data,username,openid) {
         var Image = Canvas.Image;
         var maskImg = new Image();
         var hlTitleImg = new Image();
@@ -300,9 +300,10 @@ var data = [
         context.drawImage(hlTitleImg,100,318);
         console.log('hers?');
         var buff = canvas.toBuffer();
-        fs.writeFileSync('img/'+openid+'1.png',buff);
+        fs.writeFileSync('img/'+openid+'.png',buff);
 }
 function setText(context, list){
+    console.log('join in here,baituo')
     var i, k, listLen = list.length, arrLen;
     for (i = 0; i < listLen; i++){
         arrLen = list[i].length;
@@ -342,7 +343,6 @@ function drawTextErect(context, txtObj){
         context.fillText(txtObj.text[i], x, ((txtObj.y * 2) + (txtObj.fontSize * 2)) + (((2 + txtObj.fontSize) * 2) * i));
     }
 }
-imgmake(data,'zgy','');
 
 
 
