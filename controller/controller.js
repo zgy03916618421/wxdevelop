@@ -99,7 +99,6 @@ function imgSend(req,res) {
         console.log('finish');
         
         var stream = makeImg.imgMake(data,username,openid);
-        console.log(stream);
         opts ={
                 method: 'POST',
                 url: 'https://api.weixin.qq.com/cgi-bin/media/upload',
@@ -111,7 +110,7 @@ function imgSend(req,res) {
                     'content-type': 'multipart/form-data; boundary=---011000010111000001101001' },
                 formData:
                 { media:
-                { value: stream,
+                { value: fs.createReadStream( 'img/'+openid+'.png'),
                     options : {filename : openid+'.png',contentType : 'image/png'}
                 } }
             }
