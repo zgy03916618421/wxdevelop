@@ -242,9 +242,9 @@ exports.imgMake = function (data,username,openid) {
             context.drawImage(hlTitleImg,100,318);
             console.log('hers?');
             var stream = canvas.createPNGStream();
-            var out = fs.writeFileSync('img/'+openid+'.png',stream);
-            //var out = fs.createWriteStream( 'img/'+openid+'.png');
-            //stream.pipe(out);
+            //var out = fs.writeFileSync('img/'+openid+'.png',stream);
+            var out = fs.createWriteStream( 'img/'+openid+'.png');
+            stream.pipe(out);
            return stream;
             /*http.get(url, function (res) {
                 var buf = '';
