@@ -277,6 +277,7 @@ function setText(context, list){
     for (i = 0; i < listLen; i++){
         arrLen = list[i].length;
         for (k = 0; k < arrLen; k++) {
+            console.log(list[i][k].text);
             if (list[i][k].fontWeight) {
                 context.font = list[i][k].fontWeight + ' ' + (list[i][k].fontSize * 2) + 'px PingFangSC-Regular';
             } else {
