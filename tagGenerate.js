@@ -210,6 +210,7 @@ exports.imgMake = function (data,username,openid) {
             var tag = data[3];
             console.log("tag:"+tag);
             var tagErect = data[3][3].pop();
+            console.log(tagErect);
             for (i = 0; i < tag.length; i++) {
                 for (k = 0; k < tag[i].length; k++) {
                     posObj[i][k].text = tag[i][k];
@@ -217,6 +218,7 @@ exports.imgMake = function (data,username,openid) {
                 }
             }
             setText(context, posObj);
+            console.log('settext1');
             setText(context, [
                 [
                     {
@@ -230,6 +232,7 @@ exports.imgMake = function (data,username,openid) {
                     }
                 ]
             ])
+            console.log('settext2')
             drawTextErect(context, {
                 x: 288.5,
                 y: 212,
