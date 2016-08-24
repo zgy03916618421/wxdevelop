@@ -95,7 +95,7 @@ function imgSend(req,res) {
       //  var imgStream = yield httpUtils.get(opts);
        // console.log(imgStream);
         var file = yield httpUtils.get(opts);
-        fs.writeFileSync('img/'+openid+'temp.png',file,'binary');
+     //   fs.writeFileSync('img/'+openid+'temp.png',file,'binary');
         console.log('finish');
         
         var stream = makeImg.imgMake(data,username,openid);
