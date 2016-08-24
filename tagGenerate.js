@@ -206,7 +206,6 @@ exports.imgMake = function (data,username,openid) {
         var context = canvas.getContext('2d');
         maskImg.src = fs.readFileSync(path.join(__dirname, 'img', 'make_bg.png'));
         context.drawImage(maskImg,0,0);
-        console.log('here1')
         var tag = data[3];
         console.log("tag:"+tag);
         var tagErect = data[3][3].pop();
@@ -218,7 +217,6 @@ exports.imgMake = function (data,username,openid) {
                 }
             }
         setText(context, posObj);
-        console.log('settext1');
         setText(context, [
                 [
                     {
@@ -231,48 +229,19 @@ exports.imgMake = function (data,username,openid) {
                         width: 270
                     }
                 ]
-            ])
-            console.log('settext2')
-            drawTextErect(context, {
+            ]);
+        drawTextErect(context, {
                 x: 288.5,
                 y: 212,
                 fontSize: 18,
                 color: 'rgb(197, 159, 136)',
                 text: tagErect
-            })
-            console.log('here am I');
-            hlTitleImg.src = fs.readFileSync('img/'+openid+'temp.png');
-            console.log('may wrong here');
-            context.drawImage(hlTitleImg,100,318);
-            console.log('hers?');
-            var buff = canvas.toBuffer();
-            fs.writeFileSync('img/'+openid+'.png',buff);
-            //var stream = canvas.createPNGStream();
-            //var out = fs.createWriteStream( 'img/'+openid+'.png');
-            //stream.pipe(out);
-            /*http.get(url, function (res) {
-                var buf = '';
-                res.setEncoding('binary');
-                res.on('data', function(chunk){ buf += chunk; });
-                console.log(buf);
-                res.on('end', function(){
-                    console.log('here 2');
-                    hlTitleImg.onload = function(){
-                        console.log('here 3')
-                        context.drawImage(hlTitleImg,100,318);
-                        //var out = fs.createWriteStream(path.join(__dirname, 'test2.jpg'))
-                        var stream = canvas.createJPEGStream();
-                        console.log(stream);
-                        //stream.pipe(out)
-                        resolve(stream);
-
-                    };
-                    hlTitleImg.onerror = function(err){
-                        reject(err);
-                    };
-                    hlTitleImg.src = new Buffer(buf, 'binary');
-                });
-            });*/
+            });
+        hlTitleImg.src = fs.readFileSync('img/'+openid+'temp.png');
+        context.drawImage(hlTitleImg,100,318);
+        console.log('hers?');
+        var buff = canvas.toBuffer();
+        fs.writeFileSync('img/'+openid+'.png',buff);
 }
 function setText(context, list){
     console.log('join in settext')
