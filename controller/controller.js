@@ -99,6 +99,7 @@ function imgSend(req,res) {
         console.log('finish');
         
         var stream = makeImg.imgMake(data,username,openid);
+        console.log(stream);
         opts ={
                 method: 'POST',
                 url: 'https://api.weixin.qq.com/cgi-bin/media/upload',
