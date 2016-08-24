@@ -91,13 +91,9 @@ function imgSend(req,res) {
             url : data[2],
             encoding :'binary'
         }
-      //  var imgStream = yield httpUtils.get(opts);
-       // console.log(imgStream);
         var file = yield httpUtils.get(opts);
         fs.writeFileSync('img/'+openid+'temp.png',file,'binary');
-        console.log('finish');
-
-        makeImg.imgMake(data,username,openid);
+         makeImg.imgMake(data,username,openid);
         opts ={
                 method: 'POST',
                 url: 'https://api.weixin.qq.com/cgi-bin/media/upload',
@@ -109,8 +105,8 @@ function imgSend(req,res) {
                     'content-type': 'multipart/form-data; boundary=---011000010111000001101001' },
                 formData:
                 { media:
-                { value: fs.readFileSync( 'img/'+openid+'.png'),
-                    options : {filename : openid + '.png',contentType : 'image/png'}
+                { value: fs.readFileSync( 'img/'+openid+'temp.png'),
+                    options : {filename : openid + 'temp.png',contentType : 'image/png'}
                 } }
             }
         var upresult = yield httpUtils.post(opts);
@@ -133,8 +129,6 @@ function imgSend(req,res) {
         }
         var messageresult = yield httpUtils.post(opts);
         console.log(messageresult);
-        //yield makeImg.imgMake(data,username,buf);;
-        //console.log(stream);
         res.end('success');
     }
     )
