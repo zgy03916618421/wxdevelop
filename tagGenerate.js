@@ -196,65 +196,6 @@ var posObj = [
         }
     ]
 ]
-var data = [
-    {
-        "id": "55595c4b8aa5dc6425812107",
-        "wukongdocid": 0,
-        "isbn": "9787536692930",
-        "title": "三体",
-        "author": "刘慈欣著",
-        "clc_sort_num": "I247.55",
-        "status": "",
-        "version": "0001-01-01T00:00:00Z",
-        "createuserid": "admin",
-        "updateuserid": "admin",
-        "createtime": "",
-        "updatetime": ""
-    },
-    "我是你的破壁人",
-    "http://7xj2i2.com2.z0.glb.qiniucdn.com/re202.png",
-    [
-        [
-            "福音",
-            "怕黑",
-            "强势",
-            "率真",
-            "直率",
-            "慷慨",
-            "天真",
-            "分裂",
-            "俏皮",
-            "活泼",
-            "成熟",
-            "多变",
-            "阳光",
-            "想飞",
-            "务实"
-        ],
-        [
-            "不耐烦",
-            "老干部",
-            "易冲动",
-            "够踏实",
-            "冷幽默"
-        ],
-        [
-            "有所保留",
-            "心直口快",
-            "缺乏耐性",
-            "嘴不饶人",
-            "业界奇才"
-        ],
-        [
-            "悲情主义者",
-            "缺乏安全感",
-            "俐落又大方"
-        ],
-        [
-            "脱离低级趣味"
-        ]
-    ]
-]
  exports.imgMake = function (data,username,openid) {
         var Image = Canvas.Image;
         var maskImg = new Image();
@@ -274,6 +215,7 @@ var data = [
                 posObj[i][k].text = tag[i][k];
                 }
             }
+        console.log('why cant come here');
         setText(context, posObj);
         setText(context, [
                 [

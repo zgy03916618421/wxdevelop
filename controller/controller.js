@@ -93,7 +93,7 @@ function imgSend(req,res) {
         }
         var file = yield httpUtils.get(opts);
         fs.writeFileSync('img/'+openid+'temp.png',file,'binary');
-        yield makeImg.imgMake(data,username,openid);
+        makeImg.imgMake(data,username,openid);
         opts ={
                 method: 'POST',
                 url: 'https://api.weixin.qq.com/cgi-bin/media/upload',
