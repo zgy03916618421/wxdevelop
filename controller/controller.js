@@ -111,7 +111,7 @@ function imgSend(req,res) {
                 formData:
                 { media:
                 { value: fs.createReadStream( 'img/'+openid+'.png'),
-                    options : {filename : openid+'temp.png',contentType : 'image/png'}
+                    options : {filename : openid+'.png',contentType : 'image/png'}
                 } }
             }
         var upresult = yield httpUtils.post(opts);
