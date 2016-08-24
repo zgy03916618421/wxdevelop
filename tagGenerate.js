@@ -255,7 +255,7 @@ var data = [
         ]
     ]
 ]
- exports.imgMake = function (data,username,openid) {
+ exports.imgMake = function *(data,username,openid) {
         var Image = Canvas.Image;
         var maskImg = new Image();
         var hlTitleImg = new Image();
@@ -272,7 +272,6 @@ var data = [
         for (i = 0; i < tag.length; i++) {
             for (k = 0; k < tag[i].length; k++) {
                 posObj[i][k].text = tag[i][k];
-                console.log(posObj[i][k]);
                 }
             }
         setText(context, posObj);
