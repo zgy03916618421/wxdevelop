@@ -272,7 +272,6 @@ function drawTextErect(context, txtObj){
         x,
         y,
         len = txtObj.text.length;
-    var arrText = [];
     x = txtObj.x * 2;
     for (i; i < len; i++) {
         if (txtObj.fontWeight) {
