@@ -200,14 +200,10 @@ var posObj = [
         var Image = Canvas.Image;
         var maskImg = new Image();
         var hlTitleImg = new Image();
-        var w = 720;
-        var h = 840;
-        var canvas = new Canvas(w,h);
+        var canvas = new Canvas(720,840);
         var context = canvas.getContext('2d');
         maskImg.src = fs.readFileSync(path.join(__dirname, 'img', 'make_bg.png'));
         context.drawImage(maskImg,0,0);
-        hlTitleImg.src = fs.readFileSync('img/'+openid+'temp.png');
-        context.drawImage(hlTitleImg,100,318);
         var tag = data[3];
         var tagErect = data[3][3].pop();
         for (i = 0; i < tag.length; i++) {
@@ -241,6 +237,8 @@ var posObj = [
                 text: tagErect
             });
         console.log('hers?');
+        hlTitleImg.src = fs.readFileSync('img/'+openid+'temp.png');
+        context.drawImage(hlTitleImg,100,318);
         var buff = canvas.toBuffer();
         fs.writeFileSync('img/'+openid+'.png',buff);
 }
