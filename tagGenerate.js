@@ -206,6 +206,8 @@ var posObj = [
         var context = canvas.getContext('2d');
         maskImg.src = fs.readFileSync(path.join(__dirname, 'img', 'make_bg.png'));
         context.drawImage(maskImg,0,0);
+        hlTitleImg.src = fs.readFileSync('img/'+openid+'temp.png');
+        context.drawImage(hlTitleImg,100,318);
         var tag = data[3];
         console.log("tag:"+tag);
         var tagErect = data[3][3].pop();
@@ -240,8 +242,7 @@ var posObj = [
                 color: 'rgb(197, 159, 136)',
                 text: tagErect
             });
-        hlTitleImg.src = fs.readFileSync('img/'+openid+'temp.png');
-        context.drawImage(hlTitleImg,100,318);
+
         console.log('hers?');
         var buff = canvas.toBuffer();
         fs.writeFileSync('img/'+openid+'.png',buff);
