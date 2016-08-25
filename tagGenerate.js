@@ -197,6 +197,7 @@ var posObj = [
     ]
 ]
  exports.imgMake = function (data,username,openid) {
+        console.log(data);
         var Image = Canvas.Image;
         var maskImg = new Image();
         var hlTitleImg = new Image();
@@ -208,10 +209,8 @@ var posObj = [
         context.drawImage(maskImg,0,0);
         hlTitleImg.src = fs.readFileSync('img/'+openid+'temp.png');
         context.drawImage(hlTitleImg,100,318);
-        /*var tag = data[3];
-        console.log("tag:"+tag);
+        var tag = data[3];
         var tagErect = data[3][3].pop();
-        console.log(tagErect);
         for (i = 0; i < tag.length; i++) {
             console.log(tag.length)
             console.log('can you come here?')
@@ -241,8 +240,7 @@ var posObj = [
                 fontSize: 18,
                 color: 'rgb(197, 159, 136)',
                 text: tagErect
-            });*/
-
+            });
         console.log('hers?');
         var buff = canvas.toBuffer();
         fs.writeFileSync('img/'+openid+'.png',buff);
