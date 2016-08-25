@@ -197,7 +197,6 @@ var posObj = [
     ]
 ]
  exports.imgMake = function (data,username,openid) {
-        console.log(data);
         var Image = Canvas.Image;
         var maskImg = new Image();
         var hlTitleImg = new Image();
